@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Agregar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    </h:head>
+    <h:body>
+    <h:form id="agregarForm">
+        <b:container>
+        	<b:navBar brand="IS III" brandHref="#" inverse="true" fixed="top">
+			    <b:navbarLinks>
+			        <b:navLink value="Agregar" href="#"></b:navLink>
+			        <b:navLink value="Ver Registros" href="personas.xhtml"></b:navLink>
+			    </b:navbarLinks>
+			</b:navBar>
+			<br/><br/>
+        	<h1>Agregar Persona</h1>
+        	<h:panelGroup id="alert">
+				<b:alert severity="#{AgregarPersonaMB.nivelMsj}" rendered="#{AgregarPersonaMB.mostrarMsj}" closable="true">
+					<h:outputText value=" #{AgregarPersonaMB.mensaje}"/>
+				</b:alert>
+			</h:panelGroup>
+            <b:row>
+                <b:column col-md="4">
+                	<h:outputText value="Nombre"></h:outputText>
+                   	<b:inputText value="#{AgregarPersonaMB.nombre}" placeholder="Ingresa tu nombre">
+                   		<f:facet name="prepend">
+                			<b:iconAwesome name="user"/>
+                		</f:facet>
+                   	</b:inputText>
+                </b:column>
+                <b:column col-md="4">
+                	<h:outputText value="Primer Apellido"></h:outputText>
+                   	<b:inputText value="#{AgregarPersonaMB.primerApellido}" placeholder="Ingresa tu primer apellido">
+                   		<f:facet name="prepend">
+                			<b:iconAwesome name="user"/>
+                		</f:facet>
+                   	</b:inputText>
+                </b:column>
+                <b:column col-md="4">
+                	<h:outputText value="Segundo Apellido"></h:outputText>
+                   	<b:inputText value="#{AgregarPersonaMB.segundoApellido}" placeholder="Ingresa tu segundo apellido">
+                   		<f:facet name="prepend">
+                			<b:iconAwesome name="user"/>
+                		</f:facet>
+                   	</b:inputText>
+                </b:column>
+            </b:row>
+            <b:row>
+            	<b:column col-md="4">
+                	<h:outputText value="Correo Electrónico"></h:outputText>
+                   	<b:inputText value="#{AgregarPersonaMB.email}" placeholder="Ingresa tu email">
+                   		<f:facet name="prepend">
+                			<b:iconAwesome name="envelope-o"/>
+                		</f:facet>
+                   	</b:inputText>
+                </b:column>
+                <b:column col-md="4">
+                	<h:outputText value="Sexo"></h:outputText>
+                   	<b:selectOneMenu value="#{AgregarPersonaMB.sexo}">
+                   		<f:selectItem itemLabel="Selecciona" itemValue=""></f:selectItem>
+                   		<f:selectItem itemLabel="Mujer" itemValue="F"></f:selectItem>
+                   		<f:selectItem itemLabel="Hombre" itemValue="M"></f:selectItem>
+                   	</b:selectOneMenu>
+                </b:column>
+                <b:column col-md="4">
+                	<h:outputText value="Fecha de Nacimiento"></h:outputText>
+                   	<b:datepicker value="#{AgregarPersonaMB.fechaNacimiento}" placeholder="Selecciona una fecha" mode="popup-icon">
+                   		<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Bogota"></f:convertDateTime>
+                   	</b:datepicker>
+                </b:column>
+            </b:row>
+            <br/>
+            <b:row>
+            	<b:column col-md="12">
+            		<b:commandButton value="Guardar" action="#{AgregarPersonaMB.grabar}" ajax="true" update="agregarForm" look="success" iconAwesome="floppy-o" styleClass="btn-block"></b:commandButton>
+            	</b:column>
+            </b:row>
+        </b:container>
+    </h:form>
+    </h:body>
+</html>

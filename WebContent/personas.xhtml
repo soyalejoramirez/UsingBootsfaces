@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Agregar</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</h:head>
+<h:body>
+	<h:form id="agregarForm">
+		<b:container>
+			<b:navBar brand="IS III" brandHref="#" inverse="true" fixed="top">
+				<b:navbarLinks>
+					<b:navLink value="Agregar" href="agregarPersona.xhtml"></b:navLink>
+					<b:navLink value="Ver Registros" href="#"></b:navLink>
+				</b:navbarLinks>
+			</b:navBar>
+			<br />
+			<br />
+			<h1>Personas</h1>
+			<b:row>
+				<b:column col-md="12">
+					<p:dataTable value="#{VerPersonasMB.personas}" var="persona" reflow="true">
+						<p:column headerText="Nombre">
+					        <h:outputText value="#{persona.nombre}" />
+					    </p:column>
+					    <p:column headerText="Primer Apellido">
+					        <h:outputText value="#{persona.primerApellido}" />
+					    </p:column>
+					    <p:column headerText="Segundo Apellido">
+					        <h:outputText value="#{persona.segundoApellido}" />
+					    </p:column>
+					    <p:column headerText="Sexo">
+					        <h:outputText value="#{persona.sexo == 'F' ? 'Mujer' : 'Hombre'}" />
+					    </p:column>
+					    <p:column>
+					        <b:commandButton value="" iconAwesome="external-link" look="primary" actionListener="#{VerPersonasMB.ver(persona)}" ajax="true" update="agregarForm:modalPersona"/>
+					    </p:column>
+					</p:dataTable>
+				</b:column>
+			</b:row>
+		</b:container>
+		<b:modal id="modalPersona" title="Información de la Persona" styleClass="modalPseudo">
+		    <b:container fluid="true">
+				<b:row>
+					<b:column col-md="4">
+						<h:outputText value="Nombres"/>
+						<b:inputText readonly="true" value="#{VerPersonasMB.personaSeleccionada.nombre}">
+							<f:facet name="prepend">
+	                			<b:iconAwesome name="user"/>
+	                		</f:facet>
+						</b:inputText>
+					</b:column>
+					<b:column col-md="4">
+						<h:outputText value="Primer Apellido"/>
+						<b:inputText readonly="true" value="#{VerPersonasMB.personaSeleccionada.primerApellido}">
+							<f:facet name="prepend">
+	                			<b:iconAwesome name="user"/>
+	                		</f:facet>
+						</b:inputText>
+					</b:column>
+					<b:column col-md="4">
+						<h:outputText value="Segundo Apellido"/>
+						<b:inputText readonly="true" value="#{VerPersonasMB.personaSeleccionada.segundoApellido}">
+							<f:facet name="prepend">
+	                			<b:iconAwesome name="user"/>
+	                		</f:facet>
+						</b:inputText>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column col-md="4">
+						<h:outputText value="Correo Electrónico"/>
+						<b:inputText readonly="true" value="#{VerPersonasMB.personaSeleccionada.email}">
+							<f:facet name="prepend">
+	                			<b:iconAwesome name="at"/>
+	                		</f:facet>
+						</b:inputText>
+					</b:column>
+					<b:column col-md="4">
+						<h:outputText value="Sexo"/>
+						<b:inputText readonly="true" value="#{VerPersonasMB.personaSeleccionada.sexo == 'F' ? 'MUJER' : 'HOMBRE'}">
+							<f:facet name="prepend">
+	                			<b:iconAwesome name="transgender"/>
+	                		</f:facet>
+						</b:inputText>
+					</b:column>
+					<b:column col-md="4">
+						<h:outputText value="Fecha de Nacimiento"/>
+						<b:inputText readonly="true" value="#{VerPersonasMB.personaSeleccionada.fechaNacimiento}">
+							<f:facet name="prepend">
+	                			<b:iconAwesome name="calendar"/>
+	                		</f:facet>
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Bogota"></f:convertDateTime>
+						</b:inputText>
+					</b:column>
+				</b:row>
+			</b:container>
+		</b:modal>
+	</h:form>
+</h:body>
+</html>
